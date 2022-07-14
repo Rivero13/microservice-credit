@@ -1,4 +1,4 @@
-FROM openjdk:11.0.15-jdk-slim-buster
-COPY "./target/microservice-credit.jar" "app.jar"
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+FROM openjdk:11
+VOLUME /tmp
+ADD ./target/microservice-credit-0.0.1-SNAPSHOT.jar microservice-credit.jar
+ENTRYPOINT ["java", "-jar", "/microservice-credit.jar"]
