@@ -17,7 +17,6 @@ import reactor.core.publisher.Mono;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-@RequestMapping("/bankCredit")
 public class BankCreditController {
 
     @Autowired
