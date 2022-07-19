@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -60,10 +61,11 @@ public class BankCreditController {
         return clientService.find(bankCredit.getIdClient())
                 .flatMap(c -> {
                     bankCredit.setClient(c);
+                    bankCredit.setDate(new Date());
                     bankCredit.maxMovement(bankCredit.getType());
                     logger.info(c.getFirstName());
 
-                    if(c.getType().equalsIgnoreCase("personal")){
+                    if(bankCredit.getType().equalsIgnoreCase("personal")){
                         return bankCreditService.save(bankCredit);
                     }else{
                     }

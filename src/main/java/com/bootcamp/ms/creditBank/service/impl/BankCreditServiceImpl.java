@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,12 +47,10 @@ public class BankCreditServiceImpl implements BankCreditService {
 
     @Override
     public Mono<Double> checkAvailableBalance(String idClient) {
-        Mono<Double> bankCreditMono = bankCreditRepository.findAll()
+        return  bankCreditRepository.findAll()
                 .filter(x -> x.getIdClient().equals(idClient)).map(e -> {
                     e.setAvailableBalances(e.getMaxMovement() - e.getAmount());
                     return e.getAvailableBalances();
-                }).single();
-
-        return bankCreditMono;
+                }).single().switchIfEmpty(Mono.just(00.0));
     }
 }
