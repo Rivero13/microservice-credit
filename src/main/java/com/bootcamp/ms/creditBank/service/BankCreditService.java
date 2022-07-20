@@ -6,12 +6,12 @@ import reactor.core.publisher.Mono;
 
 public interface BankCreditService {
 
-    public Flux<BankCredit> findAll();
-    public Mono<BankCredit> findById(String id);
-    public Mono<BankCredit> save(BankCredit bankCredit);
-    public Mono<Void> delete(BankCredit bankCredit);
+    Flux<BankCredit> findAll();
+    Mono<BankCredit> findById(String id);
+    Mono<BankCredit> save(BankCredit bankCredit);
+    Mono<Void> delete(BankCredit bankCredit);
 
-    public Mono<BankCredit> findByIdClient(String id);
+    Mono<BankCredit> findByIdClient(String id);
 
-    public Mono<Double> checkAvailableBalance(String idClient);
+    Mono<Double> checkAvailableBalance(String idClient);
 }

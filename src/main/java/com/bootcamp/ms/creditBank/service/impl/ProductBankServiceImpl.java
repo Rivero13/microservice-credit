@@ -27,9 +27,7 @@ public class ProductBankServiceImpl implements ProductBankService {
     public Flux<ProductBank> findAll() {
         return client.get()
                 .uri(productBankConfig.getUrl().concat("/all"))
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
-                .flatMapMany(response -> response.bodyToFlux(ProductBank.class));
+                .accept(MediaType.APPLICATION_JSON).exchange().flatMapMany(response -> response.bodyToFlux(ProductBank.class));
     }
 
     @Override
@@ -37,9 +35,6 @@ public class ProductBankServiceImpl implements ProductBankService {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
 
-        return client.get()
-                .uri(productBankConfig.getUrl().concat("/{id}"), params)
-                .accept(MediaType.APPLICATION_JSON)
-                .exchangeToMono(response -> response.bodyToMono(ProductBank.class));
+        return client.get().uri(productBankConfig.getUrl().concat("/{id}"), params).accept(MediaType.APPLICATION_JSON).exchangeToMono(response -> response.bodyToMono(ProductBank.class));
     }
 }

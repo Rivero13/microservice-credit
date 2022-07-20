@@ -10,8 +10,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EntityScan({"com.bootcamp.ms.commons.entity"})
 public class MicroserviceCreditBankApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MicroserviceCreditBankApplication.class, args);
-	}
+	public static void main(String[] args) {SpringApplication.run(MicroserviceCreditBankApplication.class, args);}
 
 }
