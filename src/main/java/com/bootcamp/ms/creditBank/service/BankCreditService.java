@@ -10,8 +10,6 @@ public interface BankCreditService {
     Mono<BankCredit> findById(String id);
     Mono<BankCredit> save(BankCredit bankCredit);
     Mono<Void> delete(BankCredit bankCredit);
-
-    Mono<BankCredit> findByIdClient(String id);
-
     Mono<Double> checkAvailableBalance(String idClient);
+    Mono<Double> checkValidateDateExpiredCreditxClient(String idClient);
 }
