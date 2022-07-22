@@ -1,7 +1,6 @@
 package com.bootcamp.ms.creditBank.service.impl;
 
 import com.bootcamp.ms.commons.entity.BankCredit;
-import com.bootcamp.ms.creditBank.controller.BankCreditController;
 import com.bootcamp.ms.creditBank.repository.BankCreditRepository;
 import com.bootcamp.ms.creditBank.service.BankCreditService;
 import org.slf4j.Logger;
@@ -13,6 +12,7 @@ import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
 import java.time.ZoneOffset;
+import java.util.Optional;
 
 @Service
 public class BankCreditServiceImpl implements BankCreditService {
@@ -21,6 +21,10 @@ public class BankCreditServiceImpl implements BankCreditService {
 
     @Autowired
     private BankCreditRepository bankCreditRepository;
+
+    public BankCreditServiceImpl(BankCreditRepository bankCreditRepository) {
+        this.bankCreditRepository = bankCreditRepository;
+    }
 
     @Override
     public Flux<BankCredit> findAll() {
@@ -62,5 +66,13 @@ public class BankCreditServiceImpl implements BankCreditService {
                     }
                     return 0.0;
                 }).single();
+    }
+
+    @Override
+    public Optional<BankCredit> findByIdOpt(String id) {
+        return bankCreditRepository.findAll()
+                .toStream()
+                .filter(b -> b.getId().contains(id))
+                .findFirst();
     }
 }

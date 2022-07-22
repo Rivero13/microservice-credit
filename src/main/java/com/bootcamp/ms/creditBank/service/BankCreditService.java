@@ -4,6 +4,8 @@ import com.bootcamp.ms.commons.entity.BankCredit;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 public interface BankCreditService {
 
     Flux<BankCredit> findAll();
@@ -12,4 +14,6 @@ public interface BankCreditService {
     Mono<Void> delete(BankCredit bankCredit);
     Mono<Double> checkAvailableBalance(String idClient);
     Mono<Double> checkValidateDateExpiredCreditxClient(String idClient);
+
+    Optional<BankCredit> findByIdOpt(String id);
 }
