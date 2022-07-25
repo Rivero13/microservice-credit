@@ -57,11 +57,11 @@ public class ClientServiceImpl implements ClientService {
 
     private Flux<Client> fallbackClient() {
         // fetch results from the cache
-        return Flux.just(new Client("","","","","",""));
+        return Flux.just(new Client("","","","","","","","","",""));
     }
 
     private Mono<Client> fallbackMonoClient() {
         // fetch results from the cache
-        return Mono.just(new Client("","","","","",""));
+        return Mono.just(new Client("","","","","","","","","",""));
     }
 }
